@@ -22,7 +22,6 @@
                 <div class="centered-demo">This div is centered!</div>
                 <p>A journey through the most sigma ways to center elements in CSS</p>
 
-
                 <div class="centering-methods">
                     <div class="method">
                         <h3>Flexbox</h3>
@@ -37,9 +36,43 @@
                         <p>Classic absolute positioning</p>
                     </div>
                 </div>
+                
+                <button class="playground-btn">Open Playground</button>
             </div>
         </div>
     </div>
+
+    <div class="playground-section">
+        <button class="back-btn">Back</button>
+        <div class="playground-container">
+            <div class="controls">
+                <button class="control-btn" data-method="flex">Flexbox</button>
+                <button class="control-btn" data-method="grid">Grid</button>
+                <button class="control-btn" data-method="position">Position</button>
+            </div>
+            <div class="playground-wrapper">
+                <div class="elements-panel">
+                    <div class="element-item" draggable="true" data-type="div">
+                        <div class="preview-box">div</div>
+                        <span>Div Element</span>
+                    </div>
+                    <div class="element-item" draggable="true" data-type="image" onclick="document.getElementById('imageUpload').click()">
+                        <div class="preview-box image-preview">
+                            <img src="images/chillguy.png" alt="Preview">
+                        </div>
+                        <span>Image</span>
+                    </div>
+                    <div class="element-item" draggable="true" data-type="button">
+                        <div class="preview-box button-preview">btn</div>
+                        <span>Button</span>
+                    </div>
+                </div>
+                <div class="playground-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
 
     <script src="script.js"></script>
 </body>
