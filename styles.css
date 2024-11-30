@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #FF2E63;    /* Vibrant pink */
-    --secondary-color: #00FFA3;  /* Neon green */
-    --accent-color: #4D4DFF;     /* Electric blue */
-    --background-color: #08081A; /* Darker background */
-    --surface-color: #12122A;    /* Slightly lighter dark */
-    --text-color: #FFFFFF;      /* Pure white */
+    --primary-color: #FF2E63;    
+    --secondary-color: #00FFA3;  
+    --accent-color: #4D4DFF;    
+    --background-color: #08081A; 
+    --surface-color: #12122A;   
+    --text-color: #FFFFFF;      
 }
 
 * {
@@ -50,6 +50,7 @@ body {
     border-radius: 15px;
     max-width: 700px;
     width: 100%;
+    transition: all 0.5s ease-in-out;
 }
 
 h1 {
@@ -96,6 +97,7 @@ h1 {
     text-align: center;
     transition: transform 0.3s ease;
     color: var(--text-color);
+    cursor: pointer;
     animation: cardGlow 3s ease-in-out infinite;
 }
 
@@ -224,4 +226,289 @@ h1 {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
+}
+
+.playground-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(127, 90, 240, 0.15), transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(44, 182, 125, 0.15), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 142, 60, 0.15), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(127, 90, 240, 0.15), transparent 50%),
+        var(--background-color);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    transform: translateY(20px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;   
+}
+
+.playground-section.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.hero-content.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.playground-container {
+    flex: 1;                
+    display: flex;          
+    flex-direction: column;     
+    height: 100%;
+    padding: 80px 20px 20px;
+}
+
+.playground-area {
+    flex: 1;
+    background: var(--surface-color);
+    border-radius: 15px;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    max-height: calc(100vh - 200px);
+    padding: 20px;
+}
+
+.playground-area::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.playground-area::-webkit-scrollbar-track {
+    background: var(--surface-color);
+    border-radius: 6px;
+}
+
+.playground-area::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 6px;
+    border: 3px solid var(--surface-color);
+}
+
+.playground-area::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+}
+
+.playground-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    animation: neon 1.5s ease-in-out infinite;
+}
+
+.playground-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.5);
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.5);
+}
+
+/* Control Buttons */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    background: var(--surface-color);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.control-btn:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Target Div */
+.target-div {
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: neon 1.5s ease-in-out infinite;
+}
+
+@keyframes neon {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                   0 0 40px var(--primary-color);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6),
+                   0 0 80px var(--primary-color);
+    }
+}
+
+.playground-wrapper {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.elements-panel {
+    width: 250px;
+    background: var(--surface-color);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.element-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    cursor: grab;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.element-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.2);
+}
+
+.element-item:active {
+    cursor: grabbing;
+}
+
+.preview-box {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.preview-box.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+}
+
+.element-item span {
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.target-div {
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: neon 1.5s ease-in-out infinite;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.target-div:active {
+    cursor: grabbing;
+}
+
+.target-div.dragging {
+    opacity: 0.8;
+    box-shadow: 0 0 30px rgba(127, 90, 240, 0.5);
+}
+
+@keyframes neon {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                   0 0 40px var(--primary-color);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6),
+                   0 0 80px var(--primary-color);
+    }
+}
+
+.target-div.image-div {
+    background-color: transparent;
+    background-image: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    overflow: hidden;
+}
+
+.target-div.image-div:hover {
+    opacity: 0.9;
+}
+
+.grid-center-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    padding: 20px;
 }
