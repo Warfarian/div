@@ -1,5 +1,5 @@
 # Center- Piece
-### The one click solution to skibidi your current tab!
+### The ultimate solution to mastering the art of centering divs!
 
 ## VOTING IS LIVE! 
 [VOTE HERE](https://devpost.com/software/center-piece)
