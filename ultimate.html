@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Secret</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .fade-out {
+            opacity: 1;
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .loading {
+            display: none;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .final-reveal {
+            display: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="initial-prompt" class="fade-in">
+            <h2>So, you wanna learn the ultimate secret to centering a div?</h2>
+            <div class="prompt">
+                <button class="playground-btn" onclick="handleResponse(true)">Yes</button>
+                <button class="playground-btn" onclick="handleResponse(false)">No</button>
+            </div>
+        </div>
+
+        <div id="second-prompt" style="display: none;">
+            <h2>Are you ready?</h2>
+            <div class="prompt">
+                <button class="playground-btn" onclick="showLoading()">Yes, I'm ready!</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            Loading the secret...
+        </div>
+
+        <div id="final-prompt" style="display: none;">
+            <h2>Are you really ready?</h2>
+            <div class="prompt">
+                <button class="playground-btn" onclick="showFinalReveal()">Yes, show me!</button>
+            </div>
+        </div>
+
+        <div id="final-reveal" class="final-reveal">
+            <img src="images/the.JPG" alt="ChatGPT" style="width: 400px; max-width: 100%; margin: 20px 0;">
+            <h2>It's just ChatGPT lol</h2>
+            <button class="playground-btn" onclick="window.location.href='https://chat.openai.com'">
+                Ask ChatGPT
+            </button>
+            <h2>Or you can just use PearAI</h2>
+            <button class="playground-btn" onclick="window.location.href='https://trypear.ai/'">
+                Ask PearAI
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleResponse(isYes) {
+            const initialPrompt = document.getElementById('initial-prompt');
+            const secondPrompt = document.getElementById('second-prompt');
+            
+            if (!isYes) {
+                initialPrompt.querySelector('h2').textContent = "I don't care lol";
+                setTimeout(() => {
+                    initialPrompt.classList.add('fade-out');
+                    setTimeout(() => {
+                        initialPrompt.style.display = 'none';
+                        secondPrompt.style.display = 'block';
+                        secondPrompt.classList.add('fade-in');
+                    }, 1000);
+                }, 1000);
+            } else {
+                initialPrompt.classList.add('fade-out');
+                setTimeout(() => {
+                    initialPrompt.style.display = 'none';
+                    secondPrompt.style.display = 'block';
+                    secondPrompt.classList.add('fade-in');
+                }, 1000);
+            }
+        }
+
+        function showLoading() {
+            const secondPrompt = document.getElementById('second-prompt');
+            const loading = document.getElementById('loading');
+            const finalPrompt = document.getElementById('final-prompt');
+
+            secondPrompt.classList.add('fade-out');
+            setTimeout(() => {
+                secondPrompt.style.display = 'none';
+                loading.style.display = 'block';
+                loading.classList.add('fade-in');
+
+                setTimeout(() => {
+                    loading.classList.add('fade-out');
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                        finalPrompt.style.display = 'block';
+                        finalPrompt.classList.add('fade-in');
+                    }, 1000);
+                }, 2000);
+            }, 1000);
+        }
+
+        function showFinalReveal() {
+            const finalPrompt = document.getElementById('final-prompt');
+            const finalReveal = document.getElementById('final-reveal');
+
+            finalPrompt.classList.add('fade-out');
+            setTimeout(() => {
+                finalPrompt.style.display = 'none';
+                finalReveal.style.display = 'block';
+                finalReveal.classList.add('fade-in');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Button Hover</title>
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body class="fade-in">
+    <a href="#" class="back-btn home-btn">Back to Home</a>
+    
     <h1 id="spooky-heading">Flexbox and Grid are Overrated—Absolute Freedom All the Way!</h1>
+    <h2 id="choose-weapon">Choose your weapon</h2>
     <div id="container">
-        <button class="btn" id="flexbox-btn">Flexbox Queen👑</button>
-        <button class="btn" id="grid-btn">Grid Perfectionist🏆</button>
-        <button class="btn" id="absolute-btn">Absolute Chaos🤴</button>
+        <button class="btn" id="flexbox-btn" onclick="showContent('flexbox')">Flexbox Queen👑</button>
+        <button class="btn" id="grid-btn" onclick="showContent('grid')">Grid Perfectionist🏆</button>
+        <button class="btn" id="absolute-btn" onclick="showContent('absolute')">Absolute Chaos🤴</button>
     </div>
 
     <div id="centered-box">
@@ -24,6 +27,15 @@
         </div>
     </div>
 
-    <script src="script2.js"></script>
+    <script src="Meme_mode.js"></script>
+    <script>
+        document.querySelector('.back-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        });
+    </script>
 </body>
 </html>

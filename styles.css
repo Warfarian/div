@@ -15,14 +15,20 @@
 }
 
 body {
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
     background: 
-        radial-gradient(circle at 0% 0%, rgba(255, 46, 99, 0.2), transparent 50%),
-        radial-gradient(circle at 100% 0%, rgba(0, 255, 163, 0.2), transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(77, 77, 255, 0.2), transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(255, 46, 99, 0.2), transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(127, 90, 240, 0.15), transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(44, 182, 125, 0.15), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 142, 60, 0.15), transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(127, 90, 240, 0.15), transparent 50%),
         var(--background-color);
     color: var(--text-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .container {
@@ -321,9 +327,7 @@ h1 {
 }
 
 .back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    position: fixed;
     padding: 12px 24px;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -333,11 +337,27 @@ h1 {
     font-weight: 500;
     box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
     transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
 }
 
 .back-btn:hover {
-    transform: translateX(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 0 20px rgba(127, 90, 240, 0.5);
+}
+
+.back-btn.home-btn {
+    top: 20px;
+    left: 20px;
+}
+
+.back-btn:not(.home-btn) {
+    top: 20px;
+    right: 20px;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* Control Buttons */
@@ -511,4 +531,431 @@ h1 {
     min-height: 100%;
     width: 100%;
     padding: 20px;
+}
+
+/* Challenge Page Specific Styles */
+.game-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                0 0 20px rgba(255, 0, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.3s ease;
+}
+
+.canvas {
+    width: 600px;
+    height: 400px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin: 20px auto;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.draggable {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    position: absolute;
+    cursor: grab;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-weight: bold;
+    animation: neon 1.5s ease-in-out infinite;
+    user-select: none;
+}
+
+.draggable:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+.draggable:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+.draggable.centered {
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 15px var(--secondary-color),
+                0 0 30px var(--secondary-color);
+    animation: centerGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes centerGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px var(--secondary-color),
+                   0 0 40px var(--secondary-color);
+    }
+    50% { 
+        box-shadow: 0 0 40px var(--secondary-color),
+                   0 0 80px var(--secondary-color);
+    }
+}
+
+@keyframes neon {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                   0 0 40px var(--primary-color);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6),
+                   0 0 80px var(--primary-color);
+    }
+}
+
+#startGame, #retryButton {
+    background: rgba(51, 51, 51, 0.8);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    transition: all 0.3s ease;
+}
+
+
+
+#startGame:hover, #retryButton:hover {
+    transform: translateX(-3px);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.5);
+}
+
+
+#memePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 26, 26, 0.95);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                0 0 20px rgba(255, 0, 255, 0.3);
+    backdrop-filter: blur(4px);
+    min-width: 300px;
+}
+
+#memePopup img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#memeQuote {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* this is for the hidden retry buttons */
+.hidden {
+    display: none !important;  
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Meme Mode Specific Styles - Arsh */
+/* Memes Mode Styles */
+#container {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#centered-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                0 0 20px rgba(255, 0, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 20px;
+    min-width: 300px;
+}
+
+#spooky-heading {
+    font-size: 3rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
+    animation: textGlow 2s ease-in-out infinite;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    text-align: center;
+}
+
+#quote {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 0 0 20px rgba(255, 46, 99, 0.6);
+    margin-bottom: 15px;
+}
+
+#explanation {
+    margin-top: 20px;
+    font-size: 20px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+#centered-box img {
+    max-width: 300px;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#centered-box img:hover {
+    transform: scale(1.05);
+}
+
+/* Memes Mode Buttons */
+.memes-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.memes-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+                0 0 20px rgba(255, 0, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for text slide-in */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.textual-code {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 1s forwards;
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.textual-code pre {
+    background: var(--surface-color);
+    color: var(--primary-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.textual-code-visible {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+/* Update back button styles */
+.back-btn.options-btn {
+    font-size: 24px;
+    padding: 8px 16px;
+    line-height: 1;
+}
+
+/* Position the back buttons */
+.back-btn.home-btn {
+    top: 20px;
+    left: 20px;
+}
+
+.back-btn.options-btn {
+    top: 20px;
+    right: 20px;
+}
+
+/* Memes Mode Button Styles */
+.btn {
+    background: rgba(51, 51, 51, 0.8);
+    color: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 0, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+#flexbox-btn {
+    background: linear-gradient(135deg, #FF2E63, #FF8E3C);
+}
+
+#grid-btn {
+    background: linear-gradient(135deg, #4D4DFF, #00FFA3);
+}
+
+#absolute-btn {
+    background: linear-gradient(135deg, #7F5AF0, #2CB67D);
+}
+
+/* Container adjustment for buttons */
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Add fade-in animation for code blocks */
+pre {
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeInCode 1s ease forwards;
+    overflow-x: auto;
+}
+
+@keyframes fadeInCode {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style the code inside pre tags */
+pre code {
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#choose-weapon {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
+    animation: textGlow 2s ease-in-out infinite;
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    text-align: center;
 }

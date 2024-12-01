@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Center or Cancel</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+  <a href="#" class="back-btn">Back</a>
+  <div class="game-container">
+    <h1>Center or lose Aura!</h1>
+    <p>Center the div in <span id="timer">10</span> seconds or lose aura!</p>
+    <div class="canvas" id="canvas">
+      <div class="draggable" id="draggable"></div>
+    </div>
+    <button id="startGame">Start Game</button>
+    <div id="memePopup" class="hidden">
+      <img id="memeImage" src="" alt="Meme">
+      <p id="memeQuote"></p>
+      <button id="retryButton">Retry</button>
+    </div>
+  </div>
+  <script src="challenge.js"></script>
+  
+  <script>
+    document.querySelector('.back-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    });
+
+    // Ensure initial opacity
+    window.addEventListener('load', function() {
+      document.body.style.opacity = 1;
+    });
+  </script>
+</body>
+</html>
+
