@@ -18,25 +18,24 @@ document.body.appendChild(backArrowBtn);
 // Handle back arrow click
 backArrowBtn.addEventListener('click', () => {
     // Hide content
-    centeredBox.style.opacity = '0';
+    centeredBox.classList.remove('visible');
     backArrowBtn.classList.add('hidden');
     
     // Show options
     setTimeout(() => {
-        container.style.display = 'flex';
+        container.classList.remove('hidden');
         heading.style.opacity = '1';
-        buttons.forEach(btn => btn.style.display = 'block');
     }, 300);
 });
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         // Hide options
-        container.style.display = 'none';
+        container.classList.add('hidden');
         heading.style.opacity = '0';
         
         // Show content and back arrow
-        centeredBox.style.opacity = '1';
+        centeredBox.classList.add('visible');
         backArrowBtn.classList.remove('hidden');
 
         // Clear previous content
